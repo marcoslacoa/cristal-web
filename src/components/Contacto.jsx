@@ -3,7 +3,7 @@ import { useState } from 'react'
 const INFO = [
   { label: 'Dirección', value: 'Ruta 11 Km 396 - Colectora 3 - Galpón 18 y 19' },
   { label: 'Email', value: 'cristalyco.fabricadevidrios@gmail.com', href: 'mailto:cristalyco.fabricadevidrios@gmail.com' },
-  { label: 'Teléfono', value: '2254-62-0677', href: 'tel:+5422546200677' },
+  { label: 'Teléfono', value: '2254-62-0677', href: 'tel:+5492254620677' },
   { label: 'WhatsApp', value: '+54 9 2254 62-0677', href: 'https://wa.me/5492254620677' },
   { label: 'Instagram', value: '@cristalyco', href: 'https://instagram.com/cristalyco' },
 ]
@@ -88,7 +88,7 @@ export default function Contacto() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-brand text-white font-heading font-semibold py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-200"
+                  className="w-full bg-brand text-white font-heading font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity duration-200"
                 >
                   Enviar mensaje
                 </button>
