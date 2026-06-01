@@ -34,12 +34,22 @@ export default function CorteCNC() {
             </ul>
           </div>
 
-          {/* Imagen */}
-          <div>
+          {/* Imágenes — grilla con 3 fotos */}
+          <div className="grid grid-cols-2 gap-3">
             <img
-              src="/images/maquina.png"
-              alt="Máquina CNC Cristal & Co"
-              className="rounded-2xl w-full object-cover h-96 shadow-xl"
+              src="/images/webp/IMG_3641.webp"
+              alt="Máquina CNC DISAI en planta"
+              className="rounded-2xl w-full object-cover h-64 col-span-1 shadow-xl"
+            />
+            <img
+              src="/images/webp/IMG_3640.webp"
+              alt="Operario en consola CNC Cristal & Co"
+              className="rounded-2xl w-full object-cover h-64 col-span-1 shadow-xl"
+            />
+            <img
+              src="/images/webp/IMG_3637.webp"
+              alt="Vista general mesa CNC en planta"
+              className="rounded-2xl w-full object-cover h-44 col-span-2 shadow-xl"
             />
           </div>
         </div>

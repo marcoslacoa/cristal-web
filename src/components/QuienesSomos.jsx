@@ -35,17 +35,25 @@ export default function QuienesSomos() {
             </div>
           </div>
 
-          {/* Imágenes */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* Grilla: foto ancha arriba + video vertical + foto */}
+          <div className="grid grid-cols-2 gap-3">
             <img
-              src="/images/operario.png"
-              alt="Operario Cristal & Co"
-              className="rounded-xl object-cover w-full h-64 col-span-1"
+              src="/images/webp/IMG_7533.webp"
+              alt="Equipo Cristal & Co trabajando con vidrios"
+              className="rounded-xl object-cover w-full h-56 col-span-2"
+            />
+            <video
+              src="/images/videos/lavadora.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="rounded-xl object-cover w-full h-72"
             />
             <img
-              src="/images/produccion.png"
-              alt="Planta de producción"
-              className="rounded-xl object-cover w-full h-64 col-span-1"
+              src="/images/webp/IMG_7551.webp"
+              alt="Equipo con cascos en planta"
+              className="rounded-xl object-cover w-full h-72"
             />
           </div>
         </div>
