@@ -8,12 +8,20 @@ const fotos = [
   { src: '/images/webp/IMG_3635.webp', alt: 'Stock de vidrios en planta' },
   { src: '/images/webp/IMG_6780.webp', alt: 'Máquina DVH Cristal & Co' },
   { src: '/images/webp/IMG_6790.webp', alt: 'Oficina y planta Cristal & Co' },
-  // DVH
+  // DVH — maquinaria y proceso
   { src: '/images/webp/IMG_7543.webp', alt: 'Frente máquina DVH con logo Cristal & Co' },
   { src: '/images/webp/IMG_3643.webp', alt: 'Máquina DVH en operación' },
   { src: '/images/webp/IMG_3642.webp', alt: 'Carga de vidrio en máquina DVH' },
   { src: '/images/webp/IMG_0476.webp', alt: 'Sellado de DVH — detalle de manos' },
   { src: '/images/webp/IMG_3649.webp', alt: 'Armado de DVH en mesa' },
+  { src: '/images/webp/dvh_linea_01.webp', alt: 'Línea de producción DVH' },
+  { src: '/images/webp/dvh_linea_02.webp', alt: 'Línea DVH — vista general' },
+  { src: '/images/webp/dvh_detalle_ensamble.webp', alt: 'Detalle ensamble DVH — marco espaciador' },
+  { src: '/images/webp/dvh_maquina_rodillos.webp', alt: 'Máquina DVH — sistema de rodillos' },
+  { src: '/images/webp/dvh_unidades_terminadas.webp', alt: 'Unidades DVH terminadas en rack' },
+  { src: '/images/webp/dvh_marcos_aluminio.webp', alt: 'DVH con marcos de aluminio negro' },
+  { src: '/images/webp/dvh_planta_general.webp', alt: 'Planta DVH — vista general' },
+  { src: '/images/webp/dvh_control_calidad.webp', alt: 'Control de calidad DVH' },
   // CNC
   { src: '/images/webp/IMG_3640.webp', alt: 'Operario en consola CNC' },
   { src: '/images/webp/IMG_3641.webp', alt: 'Máquina CNC DISAI' },
