@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
 const INFO = [
   { label: 'Dirección', value: 'Ruta 11 Km 396 - Colectora 3 - Galpón 18 y 19' },
   { label: 'Email', value: 'cristalyco.fabricadevidrios@gmail.com', href: 'mailto:cristalyco.fabricadevidrios@gmail.com' },
@@ -11,14 +13,33 @@ const INFO = [
 export default function Contacto() {
   const [form, setForm] = useState({ nombre: '', email: '', telefono: '', mensaje: '' })
   const [enviado, setEnviado] = useState(false)
+  const [enviando, setEnviando] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: conectar con backend Django
-    setEnviado(true)
-    setForm({ nombre: '', email: '', telefono: '', mensaje: '' })
+    setEnviando(true)
+    setError('')
+    try {
+      const res = await fetch(`${API_URL}/api/contacto-web/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setEnviado(true)
+        setForm({ nombre: '', email: '', telefono: '', mensaje: '' })
+      } else {
+        const data = await res.json()
+        setError(data.error || 'Ocurrió un error. Intente más tarde.')
+      }
+    } catch {
+      setError('No se pudo conectar con el servidor. Intente más tarde.')
+    } finally {
+      setEnviando(false)
+    }
   }
 
   return (
@@ -86,11 +107,15 @@ export default function Contacto() {
                     className="w-full border border-gray-200 rounded-lg px-4 py-2.5 font-body text-dark focus:outline-none focus:ring-2 focus:ring-brand text-sm resize-none"
                   />
                 </div>
+                {error && (
+                  <p className="font-body text-red-500 text-sm">{error}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full bg-brand text-white font-heading font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity duration-200"
+                  disabled={enviando}
+                  className="w-full bg-brand text-white font-heading font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity duration-200 disabled:opacity-60"
                 >
-                  Enviar mensaje
+                  {enviando ? 'Enviando...' : 'Enviar mensaje'}
                 </button>
               </form>
             )}
