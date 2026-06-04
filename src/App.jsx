@@ -8,7 +8,6 @@ import Contacto from './components/Contacto'
 import Footer from './components/Footer'
 import WhatsappButton from './components/WhatsappButton'
 
-
 export default function App() {
   return (
     <>
