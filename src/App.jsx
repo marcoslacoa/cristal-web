@@ -1,3 +1,4 @@
+import { useReveal } from './hooks/useReveal'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import QuienesSomos from './components/QuienesSomos'
@@ -8,8 +9,8 @@ import Contacto from './components/Contacto'
 import Footer from './components/Footer'
 import WhatsappButton from './components/WhatsappButton'
 
-
 export default function App() {
+  useReveal()
   return (
     <>
       <Navbar />

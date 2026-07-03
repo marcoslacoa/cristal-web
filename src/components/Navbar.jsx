@@ -13,39 +13,53 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener('scroll', onScroll)
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const navStyle = {
+    position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+    transition: 'background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease',
+    background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
+    backdropFilter: scrolled ? 'blur(12px)' : 'none',
+    boxShadow: scrolled ? '0 2px 24px rgba(26,26,26,0.08)' : 'none',
+    borderBottom: scrolled ? '1px solid rgba(26,26,26,0.06)' : 'none',
+  }
+
+  const linkColor = scrolled ? 'var(--dark)' : 'rgba(255,255,255,0.92)'
+  const linkHoverColor = scrolled ? 'var(--brand)' : '#fff'
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white shadow-md'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <nav style={navStyle} aria-label="Navegación principal">
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBlock: '0.9rem' }}>
         <a href="#inicio">
           <img
             src={logo}
             alt="Cristal & Co"
-            className={`h-12 w-auto transition-all duration-300 ${scrolled ? '' : 'brightness-0 invert'}`}
+            style={{
+              height: 44, width: 'auto',
+              filter: scrolled ? 'none' : 'brightness(0) invert(1)',
+              transition: 'filter 0.3s ease',
+            }}
           />
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex gap-8">
+        <ul style={{ display: 'flex', gap: '2.2rem', listStyle: 'none' }} className="hidden md:flex">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className={`font-body font-medium text-sm transition-colors duration-200 ${
-                  scrolled
-                    ? 'text-dark hover:text-brand'
-                    : 'text-white/90 hover:text-white'
-                }`}
+                style={{
+                  color: linkColor,
+                  fontWeight: 500,
+                  fontSize: '0.9rem',
+                  transition: 'color 0.2s ease',
+                  letterSpacing: '0.01em',
+                }}
+                onMouseEnter={e => e.target.style.color = linkHoverColor}
+                onMouseLeave={e => e.target.style.color = linkColor}
               >
                 {l.label}
               </a>
@@ -53,33 +67,55 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile hamburger */}
+        {/* CTA desktop */}
+        <a href="#contacto" className="btn btn--primary hidden md:inline-flex" style={{ padding: '0.6rem 1.3rem', fontSize: '0.88rem' }}>
+          Pedí presupuesto
+        </a>
+
+        {/* Hamburger mobile */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          style={{ display: 'flex', flexDirection: 'column', gap: 5, padding: 8, borderRadius: 8 }}
+          className="md:hidden"
           onClick={() => setOpen(!open)}
-          aria-label="Menú"
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
         >
-          <span className={`block h-0.5 w-6 transition-all duration-300 ${scrolled ? 'bg-dark' : 'bg-white'} ${open ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block h-0.5 w-6 transition-all duration-300 ${scrolled ? 'bg-dark' : 'bg-white'} ${open ? 'opacity-0' : ''}`} />
-          <span className={`block h-0.5 w-6 transition-all duration-300 ${scrolled ? 'bg-dark' : 'bg-white'} ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+          {[0,1,2].map((i) => (
+            <span key={i} style={{
+              display: 'block', height: 2, width: 24, borderRadius: 2,
+              background: scrolled ? 'var(--dark)' : '#fff',
+              transition: 'all 0.3s ease',
+              transformOrigin: 'center',
+              transform: open
+                ? i === 0 ? 'rotate(45deg) translate(5px, 5px)' : i === 2 ? 'rotate(-45deg) translate(5px, -5px)' : 'scaleX(0)'
+                : 'none',
+              opacity: open && i === 1 ? 0 : 1,
+            }} />
+          ))}
         </button>
       </div>
 
-      {/* Mobile drawer — siempre blanco */}
+      {/* Mobile drawer */}
       {open && (
-        <ul className="md:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-4">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="font-body text-dark hover:text-brand font-medium text-base"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
+        <div style={{ background: '#fff', borderTop: '1px solid rgba(26,26,26,0.06)', padding: '1rem var(--pad-x) 1.5rem' }}>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  style={{ display: 'block', padding: '0.7rem 0', color: 'var(--dark)', fontWeight: 500, fontSize: '1.05rem', borderBottom: '1px solid rgba(26,26,26,0.05)' }}
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+            <li style={{ marginTop: '1rem' }}>
+              <a href="#contacto" className="btn btn--primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setOpen(false)}>
+                Pedí presupuesto
               </a>
             </li>
-          ))}
-        </ul>
+          </ul>
+        </div>
       )}
     </nav>
   )

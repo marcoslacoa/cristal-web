@@ -8,50 +8,63 @@ const ventajas = [
 
 export default function CorteCNC() {
   return (
-    <section className="py-20 bg-brand">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section className="section section--dark" style={{ overflow: 'hidden' }}>
+      {/* Glow decorativo */}
+      <div style={{
+        position: 'absolute', bottom: -80, right: -80,
+        width: 420, height: 420, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(74,139,135,0.18), transparent 70%)',
+        filter: 'blur(8px)', pointerEvents: 'none', zIndex: 0,
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))', gap: 'clamp(2.5rem, 6vw, 5rem)', alignItems: 'center' }}>
+
           {/* Texto */}
-          <div className="text-white">
-            <span className="font-heading font-semibold text-white/70 text-sm uppercase tracking-widest mb-3 block">
-              Tecnología de punta
-            </span>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl mb-6">
+          <div className="reveal">
+            <p className="kicker kicker--light">Tecnología de punta</p>
+            <h2 className="h2" style={{ color: '#fff', marginBottom: '1.2rem' }}>
               Corte CNC de precisión
             </h2>
-            <p className="font-body text-white/90 text-lg leading-relaxed mb-8">
-              Nuestras máquinas de Control Numérico Computarizado (CNC) nos permiten
-              procesar vidrio con una exactitud que no tiene comparación. Sin importar
-              la complejidad de la forma, garantizamos un acabado perfecto.
+            <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.2rem)', color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: '2rem' }}>
+              Nuestras máquinas de Control Numérico Computarizado nos permiten procesar vidrio con una exactitud que no tiene comparación. Sin importar la complejidad de la forma, garantizamos un acabado perfecto.
             </p>
-            <ul className="space-y-3">
+            <ul style={{ display: 'grid', gap: '0.85rem' }}>
               {ventajas.map((v) => (
-                <li key={v} className="flex items-start gap-3 font-body text-white/90">
-                  <span className="text-white font-bold mt-0.5">✓</span>
-                  {v}
+                <li key={v} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
+                  <span style={{
+                    flexShrink: 0, width: 26, height: 26,
+                    display: 'grid', placeItems: 'center',
+                    borderRadius: '50%',
+                    background: 'rgba(74,139,135,0.25)',
+                    color: 'var(--brand)',
+                    fontSize: '0.85rem', fontWeight: 700,
+                  }}>✓</span>
+                  <span style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.97rem', lineHeight: 1.5, paddingTop: '0.2rem' }}>{v}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Imágenes — grilla con 3 fotos */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* Imágenes */}
+          <div className="reveal" data-delay="1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
             <img
               src="/images/webp/IMG_3641.webp"
               alt="Máquina CNC DISAI en planta"
-              className="rounded-2xl w-full object-cover h-64 col-span-1 shadow-xl"
+              style={{ borderRadius: 'var(--radius-sm)', width: '100%', objectFit: 'cover', height: 240, boxShadow: 'var(--shadow-lg)' }}
             />
             <img
               src="/images/webp/IMG_3640.webp"
               alt="Operario en consola CNC Cristal & Co"
-              className="rounded-2xl w-full object-cover h-64 col-span-1 shadow-xl"
+              style={{ borderRadius: 'var(--radius-sm)', width: '100%', objectFit: 'cover', height: 240, boxShadow: 'var(--shadow-lg)' }}
             />
             <img
               src="/images/webp/IMG_3637.webp"
               alt="Vista general mesa CNC en planta"
-              className="rounded-2xl w-full object-cover h-44 col-span-2 shadow-xl"
+              style={{ borderRadius: 'var(--radius-sm)', width: '100%', objectFit: 'cover', height: 160, gridColumn: '1 / -1', boxShadow: 'var(--shadow-lg)' }}
             />
           </div>
+
         </div>
       </div>
     </section>
